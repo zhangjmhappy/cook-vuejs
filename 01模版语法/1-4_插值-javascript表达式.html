@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1-4_插值-javascript表达式</title>
+    <script src="../js/vue.js"></script>
+
+</head>
+<body>
+<pre>
+  {{ number + 1 }}
+
+{{ ok ? 'YES' : 'NO' }}
+
+{{ message.split('').reverse().join('') }}
+
+<div v-bind:id="'list-' + id"></div>
+
+</pre>
+
+
+<div id="root">
+    {{num + 10}}
+
+    <p>{{ ok ? 'YES' : 'NO' }}</p>
+    <p>{{ message.split('').reverse().join('') }}</p>
+    <div v-bind:id="'list-' + id"></div>
+
+</div>
+
+<div>
+
+</div>
+
+<script>
+
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            num: 100,
+            ok: false,
+            message: "hello",
+            id: 500
+        }
+    });
+
+</script>
+</body>
+</html>

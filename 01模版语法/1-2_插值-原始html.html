@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>1-1-1插值-文本</title>
+    <title>1-2_插值-原始html</title>
     <script src="../js/vue.js"></script>
 
 </head>
 <body>
 
 <div id="root">
-    {{content}}
+    双大括号会将数据解释为普通文本，而非 HTML 代码。为了输出真正的 HTML，你需要使用 v-html
+    content显示带HTML文本：{{content}}
 
     <span v-html="content"></span>
+
 
 </div>
 
@@ -21,13 +23,12 @@
 
 <script>
 
-    new Vue({
+    var vm = new Vue({
         el: "#root",
         data: {
-            content: "<li>hello world!</li>",
-
-        },
-        computed: {}
+            content: "<h1>hello world!</h1>",
+            msg:"this not change"
+        }
     });
 
 </script>

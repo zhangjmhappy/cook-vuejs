@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1-3_插值-attribute</title>
+    <script src="../js/vue.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+<!--    这个将会改变vm.content:{{content}}-->
+    <p>控制台查看属性绑定Id</p>
+    <div v-bind:id="divId"></div>
+    <p>控制台查看button属性disabled</p>
+    <p>{{msg}}</p>
+
+    <button v-bind:disabled="ifDisabled"></button>
+</div>
+
+<div>
+
+</div>
+
+<script>
+
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            divId: 9527,
+            ifDisabled: true,
+            msg:"如果 ifDisabled 的值是 null、undefined 或 false，则 disabled attribute 甚至不会被包含在渲染出来的 <button />  元素中。"
+        }
+    });
+
+</script>
+</body>
+</html>
