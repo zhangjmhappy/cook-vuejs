@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+    {{content}}
+
+</div>
+
+<div>
+
+</div>
+
+    <script>
+        // 定义名为 todo-item 的新组件
+        Vue.component('todo-item', {
+            template: '<li>这是个待办项</li>'
+        })
+        new Vue({
+            el:"#root",
+            data:{
+                content:"hello world!",
+
+            }
+        })
+		
+
+    </script>
+</body>
+</html>

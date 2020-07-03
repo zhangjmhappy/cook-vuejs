@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+<!--    <div v-on:click="handleClick">{{content}}</div>-->
+
+    <div @click="handleClick">{{content}}</div>
+    <div v-html="content"></div>
+
+    <h5>vue计算属性</h5>
+
+</div>
+
+<div>
+
+</div>
+
+    <script>
+
+        new Vue({
+            el:"#root",
+            data:{
+                content:"<h1>hello world!</h1>",
+                num1: 1 ,
+                num2: 2,
+                result: num1 + num2
+            },
+            methods:{
+                handleClick: function () {
+                    this.content = "2222";
+                }
+            },
+            computed:{
+
+            }
+        })
+
+    </script>
+</body>
+</html>

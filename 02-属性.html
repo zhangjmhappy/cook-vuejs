@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+    {{content}}
+    <button v-bind:disabled="isButtonDisabled">Button</button>
+
+
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+</div>
+
+
+<script>
+
+
+    // 该对象被加入到一个 Vue 实例中
+    var vm = new Vue({
+        el: "#root",
+        isButtonDisabled: false,
+        data: {
+            content: "xxx",
+            rawHtml:"<h1>This is h1 xxx</h1>"
+        }
+    });
+
+
+</script>
+</body>
+</html>
