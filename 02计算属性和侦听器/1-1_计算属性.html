@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-1_计算属性</title>
+    <script src="../js/vue.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+    <p>原始字符串：{{message}}</p>
+    <p>倒换后字符串：{{reversedMessage}}</p>
+    当前时间：<p>{{now}}</p>
+</div>
+
+
+<div id="root2">
+    <h1>计算属性缓存 vs 方法</h1>
+
+    <p>原始字符串：{{message}}</p>
+    <p>倒换后字符串：{{reversedMessage}}</p>
+    <p>倒换后方法字符串：{{reversedMessageMethod()}}</p>
+    当前时间：<p>{{now}}</p>
+
+    <p>计算属性缓存 vs 方法:区别在于计算属性计算属性会立即返回之前的计算结果，而不必再次执行函数。，方法每次都会每当触发重新渲染时，调用方法将总会再次执行函数</p>
+</div>
+
+<div id="root3">
+    <h1>计算属性 vs 侦听属性</h1>
+
+    <pre>
+        var watchError = new Vue({
+        el: '#watchError',
+            data: {
+                firstName: 'Foo',
+                lastName: 'Bar',
+                fullName: 'Foo Bar'
+            },
+            watch: {
+                firstName: function (val) {
+                    this.fullName = val + ' ' + this.lastName
+                },
+                lastName: function (val) {
+                    this.fullName = this.firstName + ' ' + val
+                }
+            }
+        });
+
+    </pre>
+
+
+    <div id="watchError">使用监听的方式：{{ fullName }}</div>
+
+    <pre>
+    var vm3 = new Vue({
+        el: "#root3",
+        data: {
+            firstName: 'Foo',
+            lastName: 'Bar',
+        },
+        computed: {
+            fullName: function () {
+                return this.firstName + ' ' + this.lastName;
+            }
+        }
+    });
+    </pre>
+    使用计算属性的方式：
+    {{fullName}}
+
+</div>
+
+<div id="root4">
+    控制台修改vm4.fullName：{{fullName}} 例如：Jack Chen
+</div>
+
+
+<script>
+
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            message: "hello world!"
+        },
+        computed: {
+            reversedMessage: function () {
+                return this.message.split('').reverse().join('');
+            },
+            now: function () {
+                return Date.now();
+            }
+        }
+    });
+
+
+    //计算属性缓存 vs 方法
+    var vm2 = new Vue({
+        el: "#root2",
+        data: {
+            message: "hello world!"
+        },
+        computed: {
+            reversedMessage: function () {
+                return this.message.split('').reverse().join('');
+            },
+            now: function () {
+                return Date.now();
+            }
+        },
+        methods: {
+            reversedMessageMethod: function () {
+                return this.message.split('').reverse().join('');
+            }
+        }
+    });
+
+
+    //计算属性缓存 vs 方法
+    var vm3 = new Vue({
+        el: "#root3",
+        data: {
+            firstName: 'Foo',
+            lastName: 'Bar',
+        },
+        computed: {
+            fullName: function () {
+                return this.firstName + ' ' + this.lastName;
+            }
+        }
+    });
+
+
+    var watchError = new Vue({
+        el: '#watchError',
+        data: {
+            firstName: 'Foo',
+            lastName: 'Bar',
+            fullName: 'Foo Bar'
+        },
+        watch: {
+            firstName: function (val) {
+                this.fullName = val + ' ' + this.lastName
+            },
+            lastName: function (val) {
+                this.fullName = this.firstName + ' ' + val
+            }
+        }
+    });
+
+
+    //计算属性的setter
+    var vm4 = new Vue({
+        el: "#root4",
+        data: {
+            firstName: 'Foo',
+            lastName: 'Bar',
+        },
+        computed: {
+            fullName:  {
+                //get
+                get: function () {
+                    return this.firstName + ' ' + this.lastName;
+                },
+                set: function (newValue) {
+                    var names = newValue.split(' ');
+                    this.firstName = names[0];
+                    this.lastName = names[names.length - 1];
+                }
+            }
+        }
+    });
+
+
+</script>
+</body>
+</html>

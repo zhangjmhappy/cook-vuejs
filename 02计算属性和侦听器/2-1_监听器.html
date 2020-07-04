@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1-1_插值-文本</title>
+    <script src="../js/vue.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+    <p>FullName:{{fullName}}</p>
+    <p></p>
+
+</div>
+
+<div>
+
+</div>
+
+<script>
+
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            content: "<li>hello world!</li>",
+            msg:"this not change"
+        }
+    });
+
+</script>
+</body>
+</html>
