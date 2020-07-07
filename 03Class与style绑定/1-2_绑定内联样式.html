@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1-2_绑定内联样式 </title>
+    <script src="../js/vue.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+    控制台查看源码
+    <h1>对象语法</h1>
+    <textarea style="width: 800px;height: 500px">
+        <div class="static" v-bind:class="{active:isActive}"></div>
+    </textarea>
+
+    <h1>对象语法</h1>
+    <!--    <div v-bind:style="[baseStyles, overridingStyles]"></div>-->
+
+    <div class="static" v-bind:class="{active:isActive}"></div>
+
+    <template v-if="ok">
+        <h1>Title</h1>
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+    </template>
+
+
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username" key="username-input">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address" key="email-input">
+    </template>
+
+    <h1>列表渲染</h1>
+    <ul >
+        <li v-for="item in items" >
+            {{ item }}
+        </li>
+    </ul>
+
+    <ul >
+        <li v-for="item in items2" :key="item.message" >
+            {{ item.message }}
+        </li>
+    </ul>
+
+    <button @click="changeLabel">切换登陆方式</button>
+
+</div>
+
+<script>
+
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            isActive: true,
+            baseStyles: "",
+            ok: false,
+            loginType: "username",
+            items: ["java", "vue.js", "python"],
+            items2:[{"message":'Foo'},{"message":'Bar'}]
+        },
+        methods:    {
+            changeLabel:function () {
+
+                if (this.loginType === "username") {
+                    this.loginType = "xxx";
+                } else {
+                    this.loginType = "username";
+                }
+
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

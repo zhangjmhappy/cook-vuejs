@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6-事件处理</title>
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+    <h3>=====监听事件</h3>
+    counter：{{counter}}
+    <button v-on:click="counter += 1">加1</button>
+
+
+    <br><br>
+    <h3>=====事件处理方法</h3>
+    <button v-on:click="greet">加1</button>
+
+    <br><br>
+    <h3>=====内联处理器中的方法</h3>
+    <button v-on:click="say('hi java')">hi java</button>
+    <button v-on:click="say('hi vue.js')">hi vue.js</button>
+
+    <br>
+    有时也需要在内联语句处理器中访问原始的 DOM 事件。可以用特殊变量 $event 把它传入方法：
+    <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+        Submit
+    </button>
+
+
+    <br><br>
+    <h3>=====事件修饰符</h3>
+    .stop
+    .prevent
+    .capture
+    .self
+    .once
+    .passive<br>
+    <a v-on:click.stop="doThis">doThis</a>
+
+    <h3>=====按键修饰符</h3>
+    <button v-on:keyup.enter="doSubmit">doSubmit</button>
+    <button v-on:keyup.page-down="onPageDown">doSubmit1</button>
+</div>
+
+
+
+<script>
+
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            counter:0,
+            name:"Vue.js"
+        },
+        methods:{
+            greet:function (event) {
+                alert('Hello ' + this.name + ' !');
+                if (event) {
+                    alert(event.target.tagName);
+                }
+            },
+            say: function (msg) {
+                alert(msg);
+            },
+            warn: function (message, event) {
+                if (event) {
+                    event.preventDefault();
+                }
+                alert(message);
+            },
+            doThis: function () {
+                alert("doThis .... ");
+            },
+            doSubmit: function () {
+                alert("enter press !!");
+            },
+            onPageDown:function () {
+                alert("page down ...");
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

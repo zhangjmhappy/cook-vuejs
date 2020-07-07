@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>8-组件基础</title>
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+
+
+    <br>
+    <br>
+    <blog-post-demo title="test title 1"></blog-post-demo>
+    <blog-post-demo title="test title 2"></blog-post-demo>
+    <blog-post-demo title="test title 3"></blog-post-demo>
+
+
+    <blog-post-demo
+            v-for="post in posts"
+            v-bind:key="post.id"
+            v-bind:title="post.title"
+    ></blog-post-demo>
+</div>
+
+
+
+<script>
+
+    // 定义一个名为 button-counter 的新组件
+    Vue.component('button-counter', {
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    });
+
+    Vue.component('blog-post-demo', {
+        props: ['title'],
+        template: '<h3>{{title}}</h3>'
+    });
+
+
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            posts: [
+                { id: 1, title: 'My journey with Vue' },
+                { id: 2, title: 'Blogging with Vue' },
+                { id: 3, title: 'Why Vue is so fun' }
+            ]
+        }
+    });
+
+</script>
+</body>
+</html>

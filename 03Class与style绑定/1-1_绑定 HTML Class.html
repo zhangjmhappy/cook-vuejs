@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1-1_绑定 HTML Class</title>
+    <script src="../js/vue.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+    控制台查看源码
+    <h1>对象语法</h1>
+    <textarea style="width: 800px;height: 50px">
+        <div class="static" v-bind:class="{active:isActive}"></div>
+    </textarea>
+
+    <h1>数组语法</h1>
+    <!--    <div v-bind:style="[baseStyles, overridingStyles]"></div>-->
+
+    <textarea style="width: 800px;height: 50px">
+        <div class="static" v-bind:class="[activeClass,errorClass]"></div>
+    </textarea>
+    <div class="static" v-bind:class="[activeClass,errorClass]"></div>
+
+    <h1>用在组件上</h1>
+    <my-component class="baz boo"></my-component>
+    <my-component v-bind:class="[activeClass,errorClass]"></my-component>
+</div>
+
+<script>
+    Vue.component("my-component",{template: "<p class='foo bar'>Hi</p>"});
+
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            isActive: true,
+            baseStyles: "",
+            activeClass: "active",
+            errorClass: "text-danger"
+        }
+    });
+
+
+
+</script>
+</body>
+</html>

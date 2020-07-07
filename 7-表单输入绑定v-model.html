@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>7-表单输入绑定v-model</title>
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+
+<div id="root">
+    <h2>基本用法</h2>
+    <h3>文本</h3>
+    <input v-model="message"  >
+    {{message}}
+
+    <h3>多行文本</h3>
+    <span>多行文本信息：</span>
+    <p style="white-space: pre-line;">{{mulMsg}}</p>
+    <br>
+    <textarea v-model="mulMsg" placeholder="输入多行文本信息。。。"></textarea>
+
+
+    <h3>复选框</h3>
+    <input type="checkbox" id="checkbox" v-model="checked"/>
+    <label for="checkbox">{{checked}}</label>
+    <br><br>
+    多个复选框，绑定到同一个数组：
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+    <br>
+    <span>Checked names: {{ checkedNames }}</span>
+
+    <h3>单选按钮</h3>
+    <input type="radio" id="one" value="one" v-model="picked">
+    <label for="one">One</label>
+    <input type="radio" id="two" value="two" v-model="picked">
+    <label for="two">two</label>
+    <input type="radio" id="three" value="three" v-model="picked">
+    <label for="three">three</label>
+    <span>所选择的值：{{picked}}</span>
+
+    <h3>选择框</h3>
+    <select v-model="selected">
+        <option disabled value="">请选择</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <span>所选择的值：{{selected}}</span>
+
+    <h1>值绑定 v-bind</h1>
+    <h3>值绑定-复选框</h3>
+    <input type="checkbox" v-model="toggle" true-value="yes" false-value="no">
+    <span>所选择的值：{{toggle}}</span>
+    <h3>值绑定-单选按钮</h3>
+
+    <input type="radio"   v-model="pick" v-bind:value="a">
+    <span>所选择的值：{{pick}}</span>
+    <input type="radio"  v-model="pick">
+
+
+    <select v-model="selected1">
+        <!-- 内联对象字面量 -->
+        <option v-bind:value="{ number: 123 }">123</option>
+    </select>
+
+
+    <h3>修饰符</h3>
+    <input v-model.lazy="checkMsg">
+    {{checkMsg}}
+    <br>
+    输入数值
+    <input type="number" v-model.number="intMsg"/>
+    {{intMsg}}
+    <br>
+    过滤空白符号trim
+    <input  v-model.trim="trimMsg">{{trimMsg}}
+</div>
+
+
+
+<script>
+
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            message:"",
+            mulMsg:"",
+            checked:false,
+            checkedNames:[],
+            picked:'',
+            selected:'',
+            selected1:'',
+            toggle:false,
+            pick:'',
+            a:"hello",
+            checkMsg:"",
+            intMsg: '',
+            trimMsg:''
+        }
+    });
+
+</script>
+</body>
+</html>
